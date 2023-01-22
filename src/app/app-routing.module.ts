@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EmployeeAddComponent } from './employee/employee-add/employee-add.component';
-import { EmployeeAllComponent } from './employee/employee-all/employee-all.component';
-import { EmployeeDeleteComponent } from './employee/employee-delete/employee-delete.component';
-import { EmployeeEditComponent } from './employee/employee-edit/employee-edit.component';
-import { EmployeeLoginComponent } from './employee/employee-login/employee-login.component';
-import { EmployeeViewComponent } from './employee/employee-view/employee-view.component';
+import { EmployeeDeleteComponent } from './employees/employee-delete/employee-delete.component';
+import { EmployeeEditComponent } from './employees/employee-edit/employee-edit.component';
+import { EmployeeAddComponent } from './employees/employee-add/employee-add.component';
+import { EmployeeAllComponent } from './employees/employee-all/employee-all.component';
+import { EmployeeLoginComponent } from './employees/employee-login/employee-login.component';
+import { EmployeeViewComponent } from './employees/employee-view/employee-view.component';
+
 
 const routes: Routes = [
   {
@@ -41,7 +42,7 @@ const routes: Routes = [
       }
     ]
   },
-  { path: 'employee', loadChildren: () => import('./employee/employee.module').then(m => m.EmployeeModule) }
+  { path: 'employees', loadChildren: () => import('./employees/employees.module').then(m => m.EmployeesModule) }
 ];
 
 @NgModule({
