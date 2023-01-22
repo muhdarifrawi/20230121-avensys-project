@@ -2,15 +2,20 @@
     <mat-card>
         <h1>Login</h1>
         <mat-card-content>
-            <mat-form-field appearance="fill">
-                <mat-label>Username</mat-label>
-                <input matInput>
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>Password</mat-label>
-                <input type="password" matInput>
-            </mat-form-field>
-            <button mat-raised-button color="primary">Login</button>
+            <form [formGroup]="loginForm" (submit)="loginAction()">
+                <mat-form-field appearance="fill">
+                    <mat-label>Username</mat-label>
+                    <input matInput 
+                        formControlName="username"
+                        placeholder="johndoe">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput
+                        formControlName="password">
+                </mat-form-field>
+                <button mat-raised-button color="primary">Login</button>
+            </form>
         </mat-card-content>
     </mat-card>
 </div>
