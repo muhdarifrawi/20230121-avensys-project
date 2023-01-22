@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { EmployeeDeleteComponent } from './employee-delete/employee-delete.component';
 import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
@@ -31,7 +31,7 @@ import {MatButtonModule} from '@angular/material/button';
     MatInputModule,
     MatButtonModule,
     FormsModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   exports:[
     EmployeeLoginComponent,

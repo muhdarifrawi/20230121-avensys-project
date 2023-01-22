@@ -8,11 +8,17 @@
                     <input matInput 
                         formControlName="username"
                         placeholder="johndoe">
+                    <mat-error *ngIf="loginFormControl['username'].errors">
+                        Username is <strong>required</strong>
+                    </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="fill">
                     <mat-label>Password</mat-label>
                     <input type="password" matInput
                         formControlName="password">
+                    <mat-error *ngIf="loginFormControl['username'].errors">
+                        Password is <strong>required</strong>
+                    </mat-error>
                 </mat-form-field>
                 <button mat-raised-button color="primary">Login</button>
             </form>

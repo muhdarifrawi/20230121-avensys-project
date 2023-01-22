@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup,FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup,FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-employee-login',
@@ -16,13 +16,22 @@ export class EmployeeLoginComponent implements OnInit {
 
   ngOnInit():void{
     this.loginForm=this.formBuilder.group({
-      "username":new FormControl(""),
-      "password":new FormControl("")
+      "username":new FormControl("", Validators.required),
+      "password":new FormControl("", Validators.required)
     })
   }
 
+  get loginFormControl(){
+    return this.loginForm.controls
+  }
   loginAction(){
     console.log("login button working")
-    console.log(this.loginForm.value)
+    if(this.loginForm.valid){
+      console.log(this.loginForm.value)
+    }
+    else{
+      console.log("Login form does not meet requirements")
+    }
+    
   }
 }
