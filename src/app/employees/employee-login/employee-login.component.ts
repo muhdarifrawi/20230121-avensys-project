@@ -34,9 +34,9 @@ export class EmployeeLoginComponent implements OnInit {
     if(this.loginForm.valid){
       console.log(this.loginForm.value)
       let sentData = this.empService.loginUser(this.loginForm.value).subscribe(data=>{
-        if(data){
+        if(data != null){
           console.log("login success")
-          this.router.navigate(['view', 5], { relativeTo: this.route });
+          this.router.navigate(['view', data], { relativeTo: this.route });
         }
         else{
           console.log("login failed")
