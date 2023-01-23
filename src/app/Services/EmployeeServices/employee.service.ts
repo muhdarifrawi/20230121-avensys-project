@@ -14,4 +14,8 @@ export class EmployeeService {
   loginUser(loginObj:any){
     return this.http.post(this.baseUrl + "employees/login", loginObj)
   }
+
+  viewEmployee(id:string){
+    return this.http.get(this.baseUrl + "employees/" + id)
+  }
 }

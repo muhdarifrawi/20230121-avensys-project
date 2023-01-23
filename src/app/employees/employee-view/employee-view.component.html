@@ -1,8 +1,23 @@
-<mat-card>
-    <h1>Employee Name</h1>
+<mat-card *ngIf="employeeDetails">
+    <h1>{{employeeDetails.fullName}}</h1>
     <mat-card-content>
         <p>
-            This is a placeholder for all the employee info
+            Username: {{employeeDetails.username}}
+        </p>
+        <p>
+            First Name: {{employeeDetails.fName}}
+        </p>
+        <p>
+            Last Name: {{employeeDetails.lName}}
+        </p>
+        <p>
+            Email: {{employeeDetails.email}}
+        </p>
+        <p>
+            Contact: {{employeeDetails.contact}}
+        </p>
+        <p>
+            Address: {{employeeDetails.address}}
         </p>
     </mat-card-content>
 </mat-card>

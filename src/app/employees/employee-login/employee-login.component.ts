@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder, FormControl, Validators } from '@angular/forms';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { EmployeeService } from 'src/app/Services/EmployeeServices/employee.service';
 
@@ -11,12 +12,14 @@ import { EmployeeService } from 'src/app/Services/EmployeeServices/employee.serv
 export class EmployeeLoginComponent implements OnInit {
 
   loginForm:FormGroup=new FormGroup({})
+  loginError=false
 
   constructor(
     private formBuilder:FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private empService:EmployeeService,  
+    private empService:EmployeeService,
+    private snackBar:MatSnackBar
   ){}
 
   ngOnInit():void{
@@ -32,13 +35,20 @@ export class EmployeeLoginComponent implements OnInit {
   loginAction(){
     console.log("login button working")
     if(this.loginForm.valid){
+      this.loginError=false
       console.log(this.loginForm.value)
-      let sentData = this.empService.loginUser(this.loginForm.value).subscribe(data=>{
+      this.empService.loginUser(this.loginForm.value).subscribe(data=>{
         if(data != null){
+          this.snackBar.open("Login success!", "Dismiss",{
+            duration:5000
+          })
           console.log("login success")
           this.router.navigate(['view', data], { relativeTo: this.route });
         }
         else{
+          this.snackBar.open("Username/password incorrect", "Dismiss",{
+            duration:5000
+          })
           console.log("login failed")
         }
       })
@@ -48,4 +58,5 @@ export class EmployeeLoginComponent implements OnInit {
     }
     
   }
+
 }
