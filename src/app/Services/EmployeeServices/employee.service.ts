@@ -11,8 +11,19 @@ export class EmployeeService {
   // don't forget to change this if hosting it online
   baseUrl:string="http://localhost:8080/"
 
+  loggedIn!: boolean;
+
   loginUser(loginObj:any){
-    return this.http.post(this.baseUrl + "employees/login", loginObj)
+    const loginCheck = this.http.post(this.baseUrl + "employees/login", loginObj)
+    if(loginCheck!=null){
+      this.loggedIn = true
+    }
+    return loginCheck
+    
+  }
+
+  logoutUser(){
+    this.loggedIn = false
   }
 
   viewEmployee(id:string){
