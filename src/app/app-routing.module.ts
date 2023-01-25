@@ -31,7 +31,7 @@ const routes: Routes = [
       },
       {
         // should only be for admin.
-        path:"add/:id",
+        path:"add",
         canActivate:[EmployeeGuardGuard],
         component:EmployeeAddComponent
       },

@@ -16,7 +16,7 @@ export class EmployeeService {
   // don't forget to change this if hosting it online
   baseUrl:string="http://localhost:8080/"
 
-  loggedIn!: boolean;
+  loggedIn= true;
 
   loginUser(loginObj:any){
     const loginCheck = this.http.post(this.baseUrl + "employees/login", loginObj)

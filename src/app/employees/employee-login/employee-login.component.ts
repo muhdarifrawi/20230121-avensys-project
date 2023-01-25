@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup,FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { EmployeeService } from 'src/app/Services/EmployeeServices/employee.service';
-
-import {env} from "src/env/env";
-
 
 @Component({
   selector: 'app-employee-login',
