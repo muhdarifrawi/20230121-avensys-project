@@ -1,1 +1,129 @@
-<p>employee-edit works!</p>
+<mat-card>
+    <form [formGroup]="editEmployeeForm" (submit)="submitEditFormAction()">
+        <h1>Edit Employee Details</h1>
+        <table>
+            <tr>
+                <td>
+                    <h2>Personal Info</h2>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="mat-full-length">
+                        <mat-label>Full Name</mat-label>
+                        <input matInput 
+                            formControlName="fullName"
+                            placeholder="johndoe">
+                        <mat-error>
+                            Full name is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="mat-full-length">
+                        <mat-label>First Name</mat-label>
+                        <input matInput 
+                            formControlName="fName"
+                            placeholder="john">
+                        <mat-error>
+                            First name is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="mat-full-length">
+                        <mat-label>Last Name</mat-label>
+                        <input matInput 
+                            formControlName="lName"
+                            placeholder="doe">
+                        <mat-error>
+                            Last name is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <mat-form-field class="mat-full-length">
+                        <mat-label>Address</mat-label>
+                        <!-- 
+                            don't put any spaces or even newlines
+                            in the textarea
+                            or else the mat-label won't animate
+                        -->
+                        <textarea matInput></textarea>
+                        <mat-error>
+                            Address is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="mat-full-length">
+                        <mat-label>Contact</mat-label>
+                        <span matPrefix class="mat-prefix">
+                            +65 &nbsp;
+                        </span>
+                        <input matInput 
+                            formControlName="contact"
+                            placeholder="87651234">
+                        <mat-error>
+                            Contact is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="mat-full-length">
+                        <mat-label>Email</mat-label>
+                        <input matInput 
+                            formControlName="email"
+                            placeholder="johndoe@asd.com">
+                        <mat-error>
+                            Email is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2>Security</h2>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="mat-full-length">
+                        <mat-label>Password</mat-label>
+                        <input type="password" matInput
+                            formControlName="password">
+                        <mat-error >
+                            Password is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="mat-full-length">
+                        <mat-label>Confirm Password</mat-label>
+                        <input type="password" matInput
+                            formControlName="confirmPassword">
+                        <mat-error >
+                            Password confirmation is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+            </tr>
+        </table>
+        
+        
+        
+        
+        
+        
+        <button mat-raised-button color="primary">Submit</button>
+    </form>
+</mat-card>
+

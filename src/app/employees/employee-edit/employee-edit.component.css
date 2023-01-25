@@ -1,0 +1,28 @@
+mat-card{
+    margin:20px;
+    padding:30px;
+}
+
+.mat-prefix{
+    padding-left:1em;
+}
+
+table{
+    width:50vw;
+}
+
+td{
+    width:50%;
+}
+
+form{
+    width:50vw;
+}
+
+textarea{
+    resize: none;
+}
+
+.mat-full-length{
+    width:100%;
+}
