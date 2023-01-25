@@ -6,7 +6,6 @@ import { EmployeeService } from 'src/app/Services/EmployeeServices/employee.serv
 
 import {env} from "src/env/env";
 
-import * as jwt from "jsonwebtoken";
 
 @Component({
   selector: 'app-employee-login',
@@ -44,11 +43,6 @@ export class EmployeeLoginComponent implements OnInit {
       console.log(this.loginForm.value)
       this.empService.loginUser(this.loginForm.value).subscribe(data=>{
         if(data != null){
-
-          const jwtBearerToken = jwt.sign({foo:"bar"}, env.PRIVATE_KEY, {
-            algorithm: 'RS256',
-            expiresIn: 15
-          })
 
           this.snackBar.open("Login success!", "Dismiss",{
             duration:5000

@@ -11,6 +11,8 @@ export class AppComponent implements OnInit{
 
   constructor(private empService:EmployeeService){}
 
+  loggedIn = this.empService.loggedIn
+
   ngOnInit(): void {
     
   }

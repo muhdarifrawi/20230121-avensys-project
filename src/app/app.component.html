@@ -5,8 +5,9 @@
     <mat-icon>menu</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="logoutAction()">Logout</button>
-    <button mat-menu-item>Item 2</button>
+    <button *ngIf="loggedIn" mat-menu-item (click)="logoutAction()">Logout</button>
+    <button mat-menu-item>Admin Login</button>
+    <button mat-menu-item>Employee Login</button>
   </mat-menu>
   <span>Employee Management System</span>
   <span class="example-spacer"></span>

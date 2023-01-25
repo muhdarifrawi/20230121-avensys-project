@@ -1,12 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
 
-  constructor(private http:HttpClient) { }
+  constructor(
+    private http:HttpClient,
+    private route: ActivatedRoute,
+    private router: Router,
+  ) { }
 
   // don't forget to change this if hosting it online
   baseUrl:string="http://localhost:8080/"
@@ -24,6 +29,7 @@ export class EmployeeService {
 
   logoutUser(){
     this.loggedIn = false
+    this.router.navigate(["employees"], { relativeTo: this.route })
   }
 
   viewEmployee(id:string){
