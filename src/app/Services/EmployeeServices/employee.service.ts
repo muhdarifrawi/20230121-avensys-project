@@ -35,4 +35,16 @@ export class EmployeeService {
   viewEmployee(id:string){
     return this.http.get(this.baseUrl + "employees/" + id)
   }
+
+  addEmployee(empInfo:any){
+    return this.http.post(this.baseUrl + "employees/add", empInfo)
+  }
+
+  deleteEmployee(id:string){
+    return this.http.delete(this.baseUrl + "employees/delete/" + id)
+  }
+
+  updateEmployee(id:string, empInfo:any){
+    return this.http.put(this.baseUrl + "employees/update/" + id, empInfo)
+  }
 }
