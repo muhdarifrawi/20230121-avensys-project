@@ -33,5 +33,26 @@ export class EmployeeAddComponent implements OnInit{
   submitNewFormAction(){
     console.log("submit new form button pressed")
     console.log(this.newEmployeeForm.value)
+    
+    // filter out confirm password as we don't need that in the database
+    let employeeForm = (({
+      fullName, 
+      fName,
+      lName,
+      address,
+      contact,
+      email,
+      password
+    }) => ({
+      fullName, 
+      fName,
+      lName,
+      address,
+      contact,
+      email,
+      password
+    }))(this.newEmployeeForm.value)
+
+    console.log(employeeForm)
   }
 }
