@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EmployeeService } from 'src/app/Services/EmployeeServices/employee.service';
 
@@ -19,15 +19,42 @@ export class EmployeeAddComponent implements OnInit{
 
   ngOnInit(): void {
     this.newEmployeeForm=this.formBuilder.group({
-      "fullName":new FormControl(""),
-      "fName":new FormControl(""),
-      "lName":new FormControl(""),
-      "address":new FormControl(""),
-      "contact":new FormControl(""),
-      "email":new FormControl(""),
-      "password":new FormControl(""),
-      "confirmPassword":new FormControl(""),
+      "username":new FormControl("",[
+        Validators.required, 
+        Validators.minLength(8)
+      ]),
+      "fullName":new FormControl("",[Validators.required]),
+      "fName":new FormControl("",[Validators.required]),
+      "lName":new FormControl("",[Validators.required]),
+      "address":new FormControl("",[Validators.required]),
+      "contact":new FormControl("",[
+        Validators.required, 
+        Validators.minLength(8),
+        Validators.maxLength(8),
+        Validators.pattern("^[0-9]*$")
+      ]),
+      "email":new FormControl("",[
+        Validators.required,
+        Validators.email,
+        Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
+      ]),
+      "department":new FormControl("",[Validators.required]),
+      "password":new FormControl("", [
+        Validators.required, 
+        Validators.minLength(8),
+        Validators.pattern("/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/")
+      ]),
+      "confirmPassword":new FormControl("", [
+        Validators.required,
+        this.passwordMatchValidation()
+      ]),
     })
+  }
+
+  passwordMatchValidation():ValidatorFn{
+    return (control: AbstractControl): { [key: string]: any } | null =>  
+    control.value === this.newEmployeeForm.value.password 
+        ? null : {wrongPassword: control.value};
   }
 
   submitNewFormAction(){
@@ -36,20 +63,24 @@ export class EmployeeAddComponent implements OnInit{
     
     // filter out confirm password as we don't need that in the database
     let employeeForm = (({
+      username,
       fullName, 
       fName,
       lName,
       address,
       contact,
       email,
+      department,
       password
     }) => ({
+      username,
       fullName, 
       fName,
       lName,
       address,
       contact,
       email,
+      department,
       password
     }))(this.newEmployeeForm.value)
 

@@ -26,3 +26,12 @@ textarea{
 .mat-full-length{
     width:100%;
 }
+
+
+mat-error{
+    display: none !important;
+}
+
+mat-error:first-child {
+    display: block !important;
+}
