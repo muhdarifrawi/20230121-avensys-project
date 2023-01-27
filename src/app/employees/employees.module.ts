@@ -17,6 +17,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import {MatIconModule} from '@angular/material/icon';
     ReactiveFormsModule,
     MatSelectModule,
     MatIconModule,
-    RouterModule
+    RouterModule,
+    MatTableModule
   ],
   exports:[
     EmployeeLoginComponent,

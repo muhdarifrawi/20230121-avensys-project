@@ -47,4 +47,8 @@ export class EmployeeService {
   updateEmployee(id:string, empInfo:any){
     return this.http.put(this.baseUrl + "employees/update/" + id, empInfo)
   }
+
+  viewAll(){
+    return this.http.get(this.baseUrl + "employees")
+  }
 }

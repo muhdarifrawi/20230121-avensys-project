@@ -1,0 +1,15 @@
+#container{
+    width:100vw;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+mat-card{
+    margin:20px;
+}
+
+table{
+    padding:0 20px 0 20px;
+}
+
