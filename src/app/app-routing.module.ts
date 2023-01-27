@@ -7,6 +7,7 @@ import { EmployeeAllComponent } from './employees/employee-all/employee-all.comp
 import { EmployeeLoginComponent } from './employees/employee-login/employee-login.component';
 import { EmployeeViewComponent } from './employees/employee-view/employee-view.component';
 import { EmployeeGuardGuard } from './Guards/employee-guard/employee-guard.guard';
+import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 
 
 const routes: Routes = [
@@ -47,6 +48,15 @@ const routes: Routes = [
         component:EmployeeEditComponent
       }
     ]
+  },
+  {
+    path:"admin",
+    children:[
+      {
+        path:"",
+        component:AdminLoginComponent
+      },
+    ],
   },
   { path: 'employees', loadChildren: () => import('./employees/employees.module').then(m => m.EmployeesModule) },
   { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) }
