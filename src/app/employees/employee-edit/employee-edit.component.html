@@ -1,7 +1,31 @@
 <mat-card>
-    <form [formGroup]="editEmployeeForm" (submit)="submitEditFormAction()">
+    <form [formGroup]="editEmployeeForm" (submit)="submitEditFormAction()"  *ngIf="load">
         <h1>Edit Employee Details</h1>
         <table>
+            <tr>
+                <td>
+                    <h2>Username</h2>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="mat-full-length">
+                        <mat-label>Username</mat-label>
+                        <input matInput formControlName="username" 
+                            placeholder="johndoe">
+                        <mat-error *ngIf="editEmployeeForm.get('username')?.hasError('minlength')">
+                            <strong>Minimum</strong> 8 characters length required
+                        </mat-error>
+                        <mat-error>
+                            Username is <strong>required</strong>
+                        </mat-error>
+                        
+                    </mat-form-field>
+                </td>
+                <td>
+                    
+                </td>
+            </tr>
             <tr>
                 <td>
                     <h2>Personal Info</h2>
@@ -11,9 +35,8 @@
                 <td>
                     <mat-form-field class="mat-full-length">
                         <mat-label>Full Name</mat-label>
-                        <input matInput 
-                            formControlName="fullName"
-                            placeholder="johndoe">
+                        <input matInput formControlName="fullName" 
+                            placeholder="John Doe" required>
                         <mat-error>
                             Full name is <strong>required</strong>
                         </mat-error>
@@ -24,9 +47,7 @@
                 <td>
                     <mat-form-field class="mat-full-length">
                         <mat-label>First Name</mat-label>
-                        <input matInput 
-                            formControlName="fName"
-                            placeholder="john">
+                        <input matInput formControlName="fName" placeholder="john" required>
                         <mat-error>
                             First name is <strong>required</strong>
                         </mat-error>
@@ -35,9 +56,7 @@
                 <td>
                     <mat-form-field class="mat-full-length">
                         <mat-label>Last Name</mat-label>
-                        <input matInput 
-                            formControlName="lName"
-                            placeholder="doe">
+                        <input matInput formControlName="lName" placeholder="doe" required>
                         <mat-error>
                             Last name is <strong>required</strong>
                         </mat-error>
@@ -53,7 +72,7 @@
                             in the textarea
                             or else the mat-label won't animate
                         -->
-                        <textarea matInput></textarea>
+                        <textarea matInput formControlName="address" required></textarea>
                         <mat-error>
                             Address is <strong>required</strong>
                         </mat-error>
@@ -67,9 +86,17 @@
                         <span matPrefix class="mat-prefix">
                             +65 &nbsp;
                         </span>
-                        <input matInput 
-                            formControlName="contact"
-                            placeholder="87651234">
+                        <input matInput formControlName="contact" 
+                            placeholder="87651234" required>
+                        <mat-error *ngIf="editEmployeeForm.get('contact')?.hasError('pattern')">
+                            Should contain <strong>numbers</strong> only
+                        </mat-error>
+                        <mat-error *ngIf="editEmployeeForm.get('contact')?.hasError('minlength')">
+                            <strong>Minimum</strong> 8 characters length required
+                        </mat-error>
+                        <mat-error *ngIf="editEmployeeForm.get('contact')?.hasError('maxlength')">
+                            <strong>Maximum</strong> 8 characters length only
+                        </mat-error>
                         <mat-error>
                             Contact is <strong>required</strong>
                         </mat-error>
@@ -78,11 +105,48 @@
                 <td>
                     <mat-form-field class="mat-full-length">
                         <mat-label>Email</mat-label>
-                        <input matInput 
-                            formControlName="email"
-                            placeholder="johndoe@asd.com">
+                        <input matInput formControlName="email" 
+                            placeholder="johndoe@asd.com" required>
+                        <mat-error *ngIf="editEmployeeForm.get('email')?.hasError('pattern')">
+                            Not a <strong>valid email</strong> address
+                        </mat-error>
+                        <mat-error *ngIf="editEmployeeForm.get('email')?.hasError('email')">
+                            Not a <strong>valid email</strong> address
+                        </mat-error>
                         <mat-error>
                             Email is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2>
+                        Department
+                    </h2>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Department</mat-label>
+                        <select matNativeControl formControlName="department" 
+                            required>
+                            <option value="accounting">
+                                Accounting
+                            </option>
+                            <option value="development">
+                                Development
+                            </option>
+                            <option value="humanRes">
+                                Human Resource
+                            </option>
+                            <option value="marketing">
+                                Marketing
+                            </option>
+                        </select>
+                        <mat-error>
+                            Department is <strong>required</strong>
                         </mat-error>
                     </mat-form-field>
                 </td>
@@ -94,11 +158,17 @@
             </tr>
             <tr>
                 <td>
-                    <mat-form-field class="mat-full-length">
+                    <mat-form-field class="mat-full-length password">
                         <mat-label>Password</mat-label>
-                        <input type="password" matInput
-                            formControlName="password">
-                        <mat-error >
+                        <input type="password" matInput 
+                            formControlName="password" required
+                            [type]="hide ? 'password' : 'text'">
+                        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        <mat-error *ngIf="editEmployeeForm.get('password')?.hasError('weakPassword')">
+                            Password must <strong>contain</strong> a valid symbol (! @ # $ % ^ &), 
+                            a number and an upper-case letter
+                        </mat-error>
+                        <mat-error>
                             Password is <strong>required</strong>
                         </mat-error>
                     </mat-form-field>
@@ -106,23 +176,23 @@
             </tr>
             <tr>
                 <td>
-                    <mat-form-field class="mat-full-length">
+                    <mat-form-field class="mat-full-length password">
                         <mat-label>Confirm Password</mat-label>
-                        <input type="password" matInput
-                            formControlName="confirmPassword">
-                        <mat-error >
+                        <input type="password" matInput 
+                            formControlName="confirmPassword" required
+                            [type]="hide ? 'password' : 'text'" >
+                        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        <mat-error *ngIf="editEmployeeForm.get('confirmPassword')?.hasError('wrongPassword')">
+                            Password does not <strong>match</strong>
+                        </mat-error>
+                        <mat-error>
                             Password confirmation is <strong>required</strong>
                         </mat-error>
                     </mat-form-field>
                 </td>
             </tr>
         </table>
-        
-        
-        
-        
-        
-        
+
         <button mat-raised-button color="primary">Submit</button>
     </form>
 </mat-card>

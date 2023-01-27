@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {RouterModule} from '@angular/router';
 
 import { EmployeeDeleteComponent } from './employee-delete/employee-delete.component';
 import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
@@ -36,7 +37,8 @@ import {MatIconModule} from '@angular/material/icon';
     FormsModule, 
     ReactiveFormsModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    RouterModule
   ],
   exports:[
     EmployeeLoginComponent,

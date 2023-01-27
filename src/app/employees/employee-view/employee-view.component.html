@@ -1,23 +1,88 @@
 <mat-card *ngIf="employeeDetails">
     <h1>{{employeeDetails.fullName}}</h1>
     <mat-card-content>
-        <p>
-            Username: {{employeeDetails.username}}
-        </p>
-        <p>
-            First Name: {{employeeDetails.fName}}
-        </p>
-        <p>
-            Last Name: {{employeeDetails.lName}}
-        </p>
-        <p>
-            Email: {{employeeDetails.email}}
-        </p>
-        <p>
-            Contact: {{employeeDetails.contact}}
-        </p>
-        <p>
-            Address: {{employeeDetails.address}}
-        </p>
+        <table>
+            <tr>
+                <td>
+                    <h2>Department</h2>
+                </td>
+                <td>
+                    <p>
+                        {{employeeDetails.department}}
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2>Username</h2>
+                </td>
+                <td>
+                    <p>
+                        {{employeeDetails.username}}
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2>
+                        Personal Info
+                    </h2>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h3>First Name</h3>
+                </td>
+                <td>
+                    <p>
+                        {{employeeDetails.fName}}
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h3>Last Name</h3>
+                </td>
+                <td>
+                    <p>
+                        {{employeeDetails.lName}}
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h3>
+                        Address
+                    </h3>
+                </td>
+                <td>
+                    <p>
+                        {{employeeDetails.address}}
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h3>Contact</h3>
+                </td>
+                <td>
+                    <p>
+                        {{employeeDetails.contact}}
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h3>Email</h3>
+                </td>
+                <td>
+                    <p>
+                        {{employeeDetails.email}}
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <button mat-raised-button color="accent" 
+        [routerLink]="['/employees/edit',employeeDetails.id]">Edit</button>
     </mat-card-content>
 </mat-card>
