@@ -9,15 +9,18 @@ import { EmployeeService } from 'src/app/Services/EmployeeServices/employee.serv
   styleUrls: ['./employee-add.component.css']
 })
 export class EmployeeAddComponent implements OnInit{
+  hide = true
+  
   newEmployeeForm:FormGroup=new FormGroup({})
 
   constructor(
     private formBuilder:FormBuilder,
     private empService:EmployeeService,
-    private _snackBar:MatSnackBar
+    private snackBar:MatSnackBar
   ){}
 
   ngOnInit(): void {
+    
     this.newEmployeeForm=this.formBuilder.group({
       "username":new FormControl("",[
         Validators.required, 
@@ -42,7 +45,7 @@ export class EmployeeAddComponent implements OnInit{
       "password":new FormControl("", [
         Validators.required, 
         Validators.minLength(8),
-        Validators.pattern("/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/")
+        this.passwordMinComplexityValidation()
       ]),
       "confirmPassword":new FormControl("", [
         Validators.required,
@@ -55,6 +58,15 @@ export class EmployeeAddComponent implements OnInit{
     return (control: AbstractControl): { [key: string]: any } | null =>  
     control.value === this.newEmployeeForm.value.password 
         ? null : {wrongPassword: control.value};
+  }
+
+  passwordMinComplexityValidation():ValidatorFn{
+    let capsLetter = /([A-Z]+)/g
+    let minNumber = /([0-9]+)/g
+    // let validSymbols = /(?=.*\W)/g
+    return (control: AbstractControl): { [key: string]: any } | null =>  
+    capsLetter.test(control.value) && minNumber.test(control.value)
+        ? null : {weakPassword: control.value};
   }
 
   submitNewFormAction(){
@@ -85,5 +97,10 @@ export class EmployeeAddComponent implements OnInit{
     }))(this.newEmployeeForm.value)
 
     console.log(employeeForm)
+
+    this.empService.addEmployee(employeeForm).subscribe(data => {
+      console.log("sent data: ", data)
+      this.snackBar.open("Employee added successfully!", "Dismiss")
+    })
   }
 }

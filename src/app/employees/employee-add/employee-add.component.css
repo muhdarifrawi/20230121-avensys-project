@@ -27,6 +27,9 @@ textarea{
     width:100%;
 }
 
+.password{
+    margin:1em 0 1em 0;
+}
 
 mat-error{
     display: none !important;

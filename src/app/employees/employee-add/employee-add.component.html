@@ -138,7 +138,7 @@
                             <option value="development">
                                 Development
                             </option>
-                            <option value="human-resource">
+                            <option value="humanRes">
                                 Human Resource
                             </option>
                             <option value="marketing">
@@ -158,12 +158,14 @@
             </tr>
             <tr>
                 <td>
-                    <mat-form-field class="mat-full-length">
+                    <mat-form-field class="mat-full-length password">
                         <mat-label>Password</mat-label>
                         <input type="password" matInput 
-                            formControlName="password" required>
-                        <mat-error *ngIf="newEmployeeForm.get('password')?.hasError('pattern')">
-                            Password must <strong>contain</strong> a symbol, 
+                            formControlName="password" required
+                            [type]="hide ? 'password' : 'text'">
+                        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        <mat-error *ngIf="newEmployeeForm.get('password')?.hasError('weakPassword')">
+                            Password must <strong>contain</strong> a valid symbol (! @ # $ % ^ &), 
                             a number and an upper-case letter
                         </mat-error>
                         <mat-error>
@@ -174,10 +176,12 @@
             </tr>
             <tr>
                 <td>
-                    <mat-form-field class="mat-full-length">
+                    <mat-form-field class="mat-full-length password">
                         <mat-label>Confirm Password</mat-label>
                         <input type="password" matInput 
-                            formControlName="confirmPassword" required>
+                            formControlName="confirmPassword" required
+                            [type]="hide ? 'password' : 'text'" >
+                        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                         <mat-error *ngIf="newEmployeeForm.get('confirmPassword')?.hasError('wrongPassword')">
                             Password does not <strong>match</strong>
                         </mat-error>
