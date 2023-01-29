@@ -9,6 +9,7 @@ import { EmployeeViewComponent } from './employees/employee-view/employee-view.c
 import { EmployeeGuardGuard } from './Guards/employee-guard/employee-guard.guard';
 import { AdminGuardGuard } from './Guards/admin-guard/admin-guard.guard';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
+import { AdminAuditComponent } from './admin/admin-audit/admin-audit.component';
 
 
 const routes: Routes = [
@@ -67,6 +68,11 @@ const routes: Routes = [
         path:"edit/:id",
         canActivate:[AdminGuardGuard],
         component:EmployeeEditComponent
+      },
+      {
+        path:"audit-trail",
+        canActivate:[AdminGuardGuard],
+        component:AdminAuditComponent
       }
     ],
   },

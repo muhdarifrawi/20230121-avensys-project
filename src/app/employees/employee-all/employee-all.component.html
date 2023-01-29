@@ -1,10 +1,19 @@
 <div id="container">
-    <button mat-raised-button color="accent" id="add-employee"
-        [routerLink]="['/admin/add']">
-        <mat-icon aria-hidden="false" aria-label="Add employee" 
-        fontIcon="person_add"></mat-icon>
-            Add Employee
-    </button>
+    <div id="top-section">
+        <button mat-raised-button color="accent" id="add-employee"
+            [routerLink]="['/admin/add']">
+            <mat-icon aria-hidden="false" aria-label="Add employee" 
+            fontIcon="person_add"></mat-icon>
+                Add Employee
+        </button>
+        <button mat-raised-button color="accent" id="view-audit"
+            [routerLink]="['/admin/audit-trail']">
+            <mat-icon aria-hidden="false" aria-label="View audit trail"
+            fontIcon="description"></mat-icon>
+                View Audit Trail
+        </button>
+    </div>
+    
     <mat-card>
         <table mat-table [dataSource]="allEmployees" class="mat-elevation-z8">
             <tr mat-header-row *matHeaderRowDef="columnDisplay"></tr>

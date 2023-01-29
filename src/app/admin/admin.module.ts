@@ -11,10 +11,13 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import {RouterModule} from '@angular/router';
+import { AdminAuditComponent } from './admin-audit/admin-audit.component';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
-    AdminLoginComponent
+    AdminLoginComponent,
+    AdminAuditComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +29,8 @@ import {RouterModule} from '@angular/router';
     ReactiveFormsModule,
     MatSelectModule,
     MatIconModule,
-    RouterModule
+    RouterModule,
+    MatTableModule
   ],
   exports: [
     AdminLoginComponent

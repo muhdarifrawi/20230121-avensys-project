@@ -1,20 +1,26 @@
-#container{
-    width:100vw;
-    display:flex;
+#container {
+    width: 100vw;
+    display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-mat-card{
-    margin:20px;
+mat-card {
+    margin: 20px;
 }
 
-table{
-    padding:0 20px 0 20px;
+table {
+    padding: 0 20px 0 20px;
 }
 
-#add-employee{
-    width:150px;
+#add-employee {
+    width: 150px;
     margin: 20px 0 0 20px;
-    padding:5px 0 5px 0;
+    padding: 5px;
+}
+
+#view-audit {
+    width: 250px;
+    margin: 20px 0 0 20px;
+    padding: 5px 0 5px 0;
 }
