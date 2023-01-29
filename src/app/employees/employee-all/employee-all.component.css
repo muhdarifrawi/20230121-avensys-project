@@ -12,3 +12,9 @@ mat-card{
 table{
     padding:0 20px 0 20px;
 }
+
+#add-employee{
+    width:150px;
+    margin: 20px 0 0 20px;
+    padding:5px 0 5px 0;
+}

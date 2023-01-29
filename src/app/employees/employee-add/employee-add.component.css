@@ -38,3 +38,7 @@ mat-error{
 mat-error:first-child {
     display: block !important;
 }
+
+button{
+    margin: 0 5px 0 5px;
+}

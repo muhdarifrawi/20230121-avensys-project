@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl, Valid
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from 'src/app/Services/AdminServices/admin.service';
+import { AuditService } from 'src/app/Services/AuditServices/audit.service';
 import { EmployeeService } from 'src/app/Services/EmployeeServices/employee.service';
 
 @Component({
@@ -26,7 +27,8 @@ export class EmployeeEditComponent {
     private snackBar:MatSnackBar,
     private activatedRoute:ActivatedRoute,
     private router:Router,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private auditService:AuditService
     ){}
 
   ngOnInit(): void {
@@ -125,13 +127,20 @@ export class EmployeeEditComponent {
     this.empService.updateEmployee(this.userId, employeeForm).subscribe(data => {
       console.log("sent data: ", data)
       this.snackBar.open("Employee edited successfully!", "Dismiss")
-      
     })
 
     if(this.admin){
+      this.auditService.addAudit({
+        "action":"Edited employee, id " + this.userId,
+        "editor": this.adminService.currentAdmin
+      }).subscribe()
       this.router.navigate(['../admin/view', this.userId]);
     }
     else{
+      this.auditService.addAudit({
+        "action":"Edited employee, id " + this.userId,
+        "editor": this.empService.currentEmp
+      }).subscribe()
       this.router.navigate(['../employees/view', this.userId]);
     }
     

@@ -1,4 +1,10 @@
 <div id="container">
+    <button mat-raised-button color="accent" id="add-employee"
+        [routerLink]="['/admin/add']">
+        <mat-icon aria-hidden="false" aria-label="Add employee" 
+        fontIcon="person_add"></mat-icon>
+            Add Employee
+    </button>
     <mat-card>
         <table mat-table [dataSource]="allEmployees" class="mat-elevation-z8">
             <tr mat-header-row *matHeaderRowDef="columnDisplay"></tr>

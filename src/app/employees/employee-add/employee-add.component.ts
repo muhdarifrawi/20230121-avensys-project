@@ -108,13 +108,13 @@ export class EmployeeAddComponent implements OnInit{
     
     this.empService.addEmployee(employeeForm).subscribe(data => {
       console.log("sent data: ", data)
-      this.auditService.addAudit({
-        "action":"Added new employee, id" + this.sentData.id,
-        "editor": this.adminService.currentAdmin
-      })
-      this.snackBar.open("Employee added successfully!", "Dismiss")
       this.sentData = data
-      console.log(this.sentData)
+      this.auditService.addAudit({
+        "action":"Added new employee, id " + this.sentData.id,
+        "editor": this.adminService.currentAdmin
+      }).subscribe()
+      this.snackBar.open("Employee added successfully!", "Dismiss")
+      
       this.router.navigate(["../admin/view",this.sentData.id])
       
     })

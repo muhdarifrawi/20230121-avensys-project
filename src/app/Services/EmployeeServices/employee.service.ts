@@ -55,7 +55,8 @@ export class EmployeeService {
   }
 
   deleteEmployee(id:string){
-    return this.http.delete(this.baseUrl + "employees/delete/" + id)
+    return this.http.delete(this.baseUrl + "employees/delete/" + id,
+                              {responseType: "text"})
   }
 
   updateEmployee(id:string, empInfo:any){
