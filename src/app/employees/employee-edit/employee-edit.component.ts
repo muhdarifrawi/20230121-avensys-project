@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AdminService } from 'src/app/Services/AdminServices/admin.service';
 import { EmployeeService } from 'src/app/Services/EmployeeServices/employee.service';
 
 @Component({
@@ -15,10 +16,13 @@ export class EmployeeEditComponent {
   userId:any;
   userDetails:any;
   load:boolean = false;
+  genericUser = this.empService.genericUser
+  admin = this.adminService.admin
 
   constructor(
     private formBuilder:FormBuilder,
     private empService:EmployeeService,
+    private adminService:AdminService,
     private snackBar:MatSnackBar,
     private activatedRoute:ActivatedRoute,
     private router:Router,
@@ -67,7 +71,10 @@ export class EmployeeEditComponent {
             this.passwordMatchValidation()
           ]),
         })
-      
+        if(!this.admin){
+          this.editEmployeeForm.controls["username"].disable()
+          this.editEmployeeForm.controls["department"].disable()
+        }
         this.load = true
       })
     }

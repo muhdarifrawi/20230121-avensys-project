@@ -16,12 +16,14 @@ export class AdminService {
   // don't forget to change this if hosting it online
   baseUrl:string="http://localhost:8080/"
 
-  loggedIn= true;
+  loggedIn= false;
+  admin = false;
 
   loginAdmin(loginObj:any){
     const loginCheck = this.http.post(this.baseUrl + "admin/login", loginObj)
     if(loginCheck!=null){
       this.loggedIn = true
+      this.admin = true;
     }
     return loginCheck
     

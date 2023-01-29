@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { delay, Observable, of, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,15 +17,23 @@ export class EmployeeService {
   // don't forget to change this if hosting it online
   baseUrl:string="http://localhost:8080/"
 
-  loggedIn= true;
+  loggedIn= false;
+  genericUser = false;
 
   loginUser(loginObj:any){
     const loginCheck = this.http.post(this.baseUrl + "employees/login", loginObj)
-    if(loginCheck!=null){
+    console.log(loginCheck)
+    if(loginCheck != null){
       this.loggedIn = true
+      this.genericUser = true
+      return loginCheck
     }
     return loginCheck
     
+  }
+
+  loginStatus(){
+    return this.loggedIn
   }
 
   logoutUser(){

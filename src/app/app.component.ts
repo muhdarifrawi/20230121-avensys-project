@@ -8,10 +8,10 @@ import { EmployeeService } from './Services/EmployeeServices/employee.service';
 })
 export class AppComponent implements OnInit{
   title = 'avensys-empmansys';
-
+  loggedIn = this.empService.loginStatus()
   constructor(private empService:EmployeeService){}
 
-  loggedIn = this.empService.loggedIn
+  
 
   ngOnInit(): void {
     

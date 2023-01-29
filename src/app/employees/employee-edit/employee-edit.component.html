@@ -131,7 +131,7 @@
                     <mat-form-field appearance="fill">
                         <mat-label>Department</mat-label>
                         <select matNativeControl formControlName="department" 
-                            required>
+                            required [attr.disabled]="!admin">
                             <option value="accounting">
                                 Accounting
                             </option>
@@ -193,8 +193,7 @@
             </tr>
         </table>
 
-        <button mat-raised-button color="primary"
-        [disabled]="!editEmployeeForm.valid">Submit</button>
+        <button mat-raised-button color="primary">Submit</button>
         <button mat-raised-button color="basic"
         [routerLink]="['/employees/all']">Cancel</button>
     </form>
