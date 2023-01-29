@@ -1,4 +1,6 @@
 import { Component, OnInit} from '@angular/core';
+import { AdminService } from './Services/AdminServices/admin.service';
+import { AuditService } from './Services/AuditServices/audit.service';
 import { EmployeeService } from './Services/EmployeeServices/employee.service';
 
 @Component({
@@ -9,7 +11,11 @@ import { EmployeeService } from './Services/EmployeeServices/employee.service';
 export class AppComponent implements OnInit{
   title = 'avensys-empmansys';
   loggedIn = this.empService.loginStatus()
-  constructor(private empService:EmployeeService){}
+  constructor(
+    private empService:EmployeeService,
+    private adminService:AdminService,
+    private auditService:AuditService
+    ){}
 
   
 
@@ -18,6 +24,19 @@ export class AppComponent implements OnInit{
   }
   logoutAction(){
     console.log("logged out")
+    if(this.adminService.admin){
+      this.auditService.addAudit({
+        "action": this.adminService.currentAdmin + " logged out",
+        "editor": this.adminService.currentAdmin
+      }).subscribe()
+    }
+    else{
+      this.auditService.addAudit({
+        "action": this.empService.currentEmp + " logged out",
+        "editor": this.empService.currentEmp
+      }).subscribe()
+    }
+    
     this.empService.logoutUser()
   }
 

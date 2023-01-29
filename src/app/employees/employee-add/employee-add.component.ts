@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { AdminService } from 'src/app/Services/AdminServices/admin.service';
+import { AuditService } from 'src/app/Services/AuditServices/audit.service';
 import { EmployeeService } from 'src/app/Services/EmployeeServices/employee.service';
 
 @Component({
@@ -20,6 +22,8 @@ export class EmployeeAddComponent implements OnInit{
     private empService:EmployeeService,
     private snackBar:MatSnackBar,
     private router:Router,
+    private adminService:AdminService,
+    private auditService:AuditService
   ){}
 
   ngOnInit(): void {
@@ -104,12 +108,14 @@ export class EmployeeAddComponent implements OnInit{
     
     this.empService.addEmployee(employeeForm).subscribe(data => {
       console.log("sent data: ", data)
-      
+      this.auditService.addAudit({
+        "action":"Added new employee, id" + this.sentData.id,
+        "editor": this.adminService.currentAdmin
+      })
       this.snackBar.open("Employee added successfully!", "Dismiss")
       this.sentData = data
       console.log(this.sentData)
       this.router.navigate(["../admin/view",this.sentData.id])
-      
       
     })
   }

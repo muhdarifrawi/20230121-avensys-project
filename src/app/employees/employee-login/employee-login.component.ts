@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { AuditService } from 'src/app/Services/AuditServices/audit.service';
 import { EmployeeService } from 'src/app/Services/EmployeeServices/employee.service';
 
 @Component({
@@ -19,7 +20,8 @@ export class EmployeeLoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private empService:EmployeeService,
-    private snackBar:MatSnackBar
+    private snackBar:MatSnackBar,
+    private auditService:AuditService
   ){}
 
   ngOnInit():void{
@@ -45,6 +47,10 @@ export class EmployeeLoginComponent implements OnInit {
             duration:5000
           })
           console.log("login success")
+          this.auditService.addAudit({
+            "action": this.empService.currentEmp + " logged in",
+            "editor": this.empService.currentEmp
+          }).subscribe()
           this.router.navigate(['view', data], { relativeTo: this.route });
         }
         else{

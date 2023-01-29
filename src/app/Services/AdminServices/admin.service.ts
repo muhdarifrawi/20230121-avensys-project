@@ -18,12 +18,14 @@ export class AdminService {
 
   loggedIn= false;
   admin = false;
+  currentAdmin:any
 
   loginAdmin(loginObj:any){
     const loginCheck = this.http.post(this.baseUrl + "admin/login", loginObj)
     if(loginCheck!=null){
       this.loggedIn = true
       this.admin = true;
+      this.currentAdmin = loginObj.username
     }
     return loginCheck
     

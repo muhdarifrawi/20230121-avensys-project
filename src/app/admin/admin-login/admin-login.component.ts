@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from 'src/app/Services/AdminServices/admin.service'
+import { AuditService } from 'src/app/Services/AuditServices/audit.service';
 
 @Component({
   selector: 'app-admin-login',
@@ -18,7 +19,8 @@ export class AdminLoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private adminService:AdminService,
-    private snackBar:MatSnackBar
+    private snackBar:MatSnackBar,
+    private auditService:AuditService
   ){}
 
   ngOnInit():void{
@@ -39,7 +41,11 @@ export class AdminLoginComponent implements OnInit {
           this.snackBar.open("Login success!", "Dismiss",{
             duration:5000
           })
-          console.log("login success")
+          console.log("login success ", data)
+          this.auditService.addAudit({
+            "action": this.adminService.currentAdmin + " logged in",
+            "editor": this.adminService.currentAdmin
+          }).subscribe()
           this.router.navigate(['admin/all']);
         }
         else{

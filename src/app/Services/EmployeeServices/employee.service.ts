@@ -21,6 +21,7 @@ export class EmployeeService {
 
   loggedIn= false;
   genericUser = false;
+  currentEmp:any
 
   loginUser(loginObj:any){
     const loginCheck = this.http.post(this.baseUrl + "employees/login", loginObj)
@@ -28,6 +29,7 @@ export class EmployeeService {
     if(loginCheck != null){
       this.loggedIn = true
       this.genericUser = true
+      this.currentEmp = loginObj.username
       return loginCheck
     }
     return loginCheck
