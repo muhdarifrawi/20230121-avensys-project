@@ -193,7 +193,10 @@
             </tr>
         </table>
 
-        <button mat-raised-button color="primary">Submit</button>
+        <button mat-raised-button color="primary"
+        [disabled]="!editEmployeeForm.valid">Submit</button>
+        <button mat-raised-button color="basic"
+        [routerLink]="['/employees/all']">Cancel</button>
     </form>
 </mat-card>
 

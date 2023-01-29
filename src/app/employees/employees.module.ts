@@ -18,7 +18,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTableModule} from '@angular/material/table';
-
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -40,7 +40,8 @@ import {MatTableModule} from '@angular/material/table';
     MatSelectModule,
     MatIconModule,
     RouterModule,
-    MatTableModule
+    MatTableModule,
+    MatMenuModule
   ],
   exports:[
     EmployeeLoginComponent,

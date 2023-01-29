@@ -23,10 +23,13 @@
             <tr>
                 <td>
                     <button mat-raised-button color="warn">Delete</button>
-                    <button mat-raised-button color="basic">Cancel</button>
+                    <button mat-raised-button color="basic"
+                    [routerLink]="['/employees/all']">Cancel</button>
                 </td>
             </tr>
         </table>
     </form>
+    
+    
 </mat-card>
 
