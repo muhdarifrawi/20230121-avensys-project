@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { EmployeeService } from 'src/app/Services/EmployeeServices/employee.service';
 
 @Component({
@@ -12,11 +13,13 @@ export class EmployeeAddComponent implements OnInit{
   hide = true
   
   newEmployeeForm:FormGroup=new FormGroup({})
+  sentData:any
 
   constructor(
     private formBuilder:FormBuilder,
     private empService:EmployeeService,
-    private snackBar:MatSnackBar
+    private snackBar:MatSnackBar,
+    private router:Router,
   ){}
 
   ngOnInit(): void {
@@ -98,9 +101,18 @@ export class EmployeeAddComponent implements OnInit{
 
     console.log(employeeForm)
 
+    
     this.empService.addEmployee(employeeForm).subscribe(data => {
       console.log("sent data: ", data)
+      
       this.snackBar.open("Employee added successfully!", "Dismiss")
+      this.sentData = data
+      console.log(this.sentData)
+      this.router.navigate(["../employees/view",this.sentData.id])
+      
+      
     })
   }
 }
+
+
