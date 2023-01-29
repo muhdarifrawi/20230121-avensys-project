@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AdminService } from 'src/app/Services/AdminServices/admin.service';
 import { EmployeeService } from 'src/app/Services/EmployeeServices/employee.service';
 
 @Component({
@@ -10,25 +11,22 @@ import { EmployeeService } from 'src/app/Services/EmployeeServices/employee.serv
 })
 export class EmployeeDeleteComponent implements OnInit{
   userId:string = ""
+  admin = this.adminService.admin
 
   constructor(
     private activatedRoute:ActivatedRoute,
     private empService:EmployeeService,
     private snackBar:MatSnackBar,
-    private router:Router
+    private router:Router,
+    private adminService:AdminService
     ){}
 
   ngOnInit(): void {
+
     this.activatedRoute.params.subscribe(data=>{
       this.userId=data["id"]
     })
 
-    // if(this.userId !== ""){
-    //   this.load = true
-    // }
-    // else{
-    //   this.router.navigate(['../employees/all']);
-    // }
   }
 
   deleteEmployeeAction(){
@@ -38,6 +36,12 @@ export class EmployeeDeleteComponent implements OnInit{
           this.snackBar.open("User deleted successfully!", "Dismiss")
           
     })
-    this.router.navigate(['../employees/all']);
+    if(this.admin){
+      this.router.navigate(['../admin/all']);
+    }
+    else{
+      this.router.navigate(['../view',this.userId]);
+    }
+    
   }
 }

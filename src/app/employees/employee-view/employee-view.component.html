@@ -83,6 +83,13 @@
             </tr>
         </table>
         <button mat-raised-button color="accent" 
-        [routerLink]="['/employees/edit',employeeDetails.id]">Edit</button>
+        [routerLink]="['/employees/edit',employeeDetails.id]"
+        *ngIf="!admin">Edit</button>
+        <button mat-raised-button color="accent" 
+        [routerLink]="['/admin/edit',employeeDetails.id]"
+        *ngIf="admin">Edit</button>
+        <button mat-raised-button color="accent" 
+        [routerLink]="['/admin/all']"
+        *ngIf="admin">Back</button>
     </mat-card-content>
 </mat-card>

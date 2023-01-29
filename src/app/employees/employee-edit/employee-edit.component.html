@@ -194,8 +194,10 @@
         </table>
 
         <button mat-raised-button color="primary">Submit</button>
-        <button mat-raised-button color="basic"
-        [routerLink]="['/employees/all']">Cancel</button>
+        <button *ngIf="admin" color="basic"
+        [routerLink]="['/admin/all']">Cancel</button>
+        <button *ngIf="!admin" color="basic"
+        [routerLink]="['/employees/view', userId]">Cancel</button>
     </form>
 </mat-card>
 

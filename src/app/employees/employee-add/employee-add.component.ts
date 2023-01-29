@@ -108,7 +108,7 @@ export class EmployeeAddComponent implements OnInit{
       this.snackBar.open("Employee added successfully!", "Dismiss")
       this.sentData = data
       console.log(this.sentData)
-      this.router.navigate(["../employees/view",this.sentData.id])
+      this.router.navigate(["../admin/view",this.sentData.id])
       
       
     })

@@ -46,7 +46,7 @@ export class EmployeeEditComponent {
             Validators.minLength(8)
           ]),
           "fullName":new FormControl(this.userDetails.fullName,[Validators.required]),
-          "fName":new FormControl(this.userDetails.lName,[Validators.required]),
+          "fName":new FormControl(this.userDetails.fName,[Validators.required]),
           "lName":new FormControl(this.userDetails.lName,[Validators.required]),
           "address":new FormControl(this.userDetails.address,[Validators.required]),
           "contact":new FormControl(this.userDetails.contact,[
@@ -124,10 +124,16 @@ export class EmployeeEditComponent {
 
     this.empService.updateEmployee(this.userId, employeeForm).subscribe(data => {
       console.log("sent data: ", data)
-      this.snackBar.open("Employee added successfully!", "Dismiss")
+      this.snackBar.open("Employee edited successfully!", "Dismiss")
       
     })
 
-    this.router.navigate(['../employees/view', this.userId]);
+    if(this.admin){
+      this.router.navigate(['../admin/view', this.userId]);
+    }
+    else{
+      this.router.navigate(['../employees/view', this.userId]);
+    }
+    
   }
 }

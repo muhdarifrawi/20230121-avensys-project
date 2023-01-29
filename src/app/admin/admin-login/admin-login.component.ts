@@ -40,7 +40,7 @@ export class AdminLoginComponent implements OnInit {
             duration:5000
           })
           console.log("login success")
-          this.router.navigate(['employees/all']);
+          this.router.navigate(['admin/all']);
         }
         else{
           this.snackBar.open("Username/password incorrect", "Dismiss",{

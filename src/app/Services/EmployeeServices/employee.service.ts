@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { delay, Observable, of, tap } from 'rxjs';
+import { AdminService } from '../AdminServices/admin.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class EmployeeService {
     private http:HttpClient,
     private route: ActivatedRoute,
     private router: Router,
+    private adminService:AdminService
   ) { }
 
   // don't forget to change this if hosting it online
@@ -38,6 +40,7 @@ export class EmployeeService {
 
   logoutUser(){
     this.loggedIn = false
+    this.adminService.admin = false
     this.router.navigate(["employees"], { relativeTo: this.route })
   }
 

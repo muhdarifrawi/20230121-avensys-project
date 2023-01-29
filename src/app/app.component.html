@@ -6,8 +6,8 @@
   </button>
   <mat-menu #menu="matMenu">
     <button mat-menu-item (click)="logoutAction()">Logout</button>
-    <button mat-menu-item>Admin Login</button>
-    <button mat-menu-item>Employee Login</button>
+    <button mat-menu-item [routerLink]="['/admin']">Admin Login</button>
+    <button mat-menu-item [routerLink]="['/employees']">Employee Login</button>
   </mat-menu>
   <span>Employee Management System</span>
   <span class="example-spacer"></span>
