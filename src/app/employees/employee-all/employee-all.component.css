@@ -24,3 +24,7 @@ table {
     margin: 20px 0 0 20px;
     padding: 5px 0 5px 0;
 }
+
+.action-buttons{
+    margin: 0 5px 0 5px;
+}
